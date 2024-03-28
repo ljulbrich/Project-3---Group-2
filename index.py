@@ -8,12 +8,8 @@ import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from selenium.common import TimeoutException
-import sys
 
 #################################################
 # Database Setup
@@ -38,16 +34,18 @@ def long_term_price(ticker):
     csv_path = Path('Resources/ASX_Listed_Companies_25-03-2024_02-42-20_AEDT.csv')
     ASX_list = pd.read_csv(csv_path)
     article_dict = {}
-
-    # Setting up the selenium webdriver
-    options = Options()
-    options.add_argument('--headless=new')
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
-    driver.get(query_URL)
     
     if ticker in ASX_list['ASX code']:
         query_URL = f"{query_start}{ticker}{query_end}"
+
+        # Setting up the selenium webdriver
+        options = Options()
+        options.add_argument('--headless=new')
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
         driver.get(query_URL)
+        articles = driver.find_elements(By.CSS_SELECTOR, 'li[class="js-stream-content Pos(r)"]')
+
+
         for article in articles:
             raw_html = article.get_attribute('outerHTML')
 
@@ -61,9 +59,14 @@ def long_term_price(ticker):
             blurb = re.search(blurb_pattern, raw_html)
             link = re.search(link_pattern, raw_html)
             article_dict[title.group(1)] = {blurb.group(1):link.group(1)}
+
+        # Closing the webdriver
+        driver.quit()
         
         # run article blurbs through sentiment analysis algorithm
         # run blurbs through algorithm which selects the most common words
+
+        
     else:
         print('Invalid stock ticker!')
         # insert logic to go to an invalid stock ticker page
