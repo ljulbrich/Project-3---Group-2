@@ -1,6 +1,7 @@
 # Import the dependencies.
 from flask import Flask, render_template
 from xiang import er_plot, company_details, company_name, get_news
+from database import rand_com_data
 import yfinance as yf
 
 #################################################
@@ -29,6 +30,11 @@ def main(ticker):
         return render_template("main.html", error_message=error_message)
     
     return render_template('main.html', er_image = er_image, c_data = c_data, c_name=c_name, news=news)
+
+@app.route("/simulation")
+def simulation():
+    stock_date, stock_price = rand_com_data()
+    return render_template('simulation.html', stock_date=stock_date, stock_price=stock_price)
 
 #################################################
 # Run the app
