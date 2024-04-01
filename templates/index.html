@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Your Stock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex; /* Use flexbox for centering */
+            min-height: 100vh; /* Set minimum viewport height */
+            align-items: flex-start; /* Align vertically */
+            justify-content: flex-start; /* Align horizontally */
+            background-color: #f5f5f5; /* Light gray background */
+        }
+
+        .search-box {
+            margin-top: 200px; /* Adjust margin for desired position */
+            margin-left: 500px; /* Adjust margin for desired position */
+            width: 50%; /* Adjust width as needed */
+            max-width: 500px; /* Set a maximum width */
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%; /* Fill the container width */
+            border: none; /* Remove border */
+            outline: none; /* Remove outline */
+            font-size: 16px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-box">
+        <input type="text" id= "search" placeholder="search stock ticker e.g. msft">
+    </div>
+
+<script src="{{ url_for('static', filename='js/logic.js') }}"></script>
+
+</body>
+</html>
