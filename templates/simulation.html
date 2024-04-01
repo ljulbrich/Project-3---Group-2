@@ -12,9 +12,8 @@
 </head>
 
 <body>
+  {% include 'nav.html' %}
 
-  <div class="container">
-    
     <div class="row">
       <div class="col-md-12 p-5 text-center bg-light">
         <h1>Belly Button Biodiversity Dashboard</h1>
@@ -28,15 +27,17 @@
       </div>
     </div>
 
-  </div>
+  <script src="{{ url_for('static', filename='js/simulation.js') }}"></script>
 
   <script>
-    const stock_x = {{ stock_date|tojson }};
-    const stock_y = {{ stock_price|tojson }};
-    print(stock_x);
-  </script>
+    const stockX = {{ stock_date|tojson }};
+    const stockY = {{ stock_price|tojson }};
+    
+    randomNum = randNum(40,60);
+    console.log(randomNum);
 
-  <script src="{{ url_for('static', filename='js/simulation.js') }}"></script>
+    lineChart(stockX, stockY);
+  </script>
 
 </body>
 

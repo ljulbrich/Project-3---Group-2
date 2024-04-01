@@ -30,7 +30,7 @@ def rand_com_data():
     #this original date format is annoying
     datetime_series = pd.to_datetime(df.Date)
     # Extract the date part (without time)
-    date_series = datetime_series.dt.date
+    date_series = datetime_series.dt.date.to_list()
 
     #now, I need to randomly choose one of the four prices (open, high, low, close) as that day's final share price
     #because when we check on share prices, we only check it for a short period of time and come bace later to check again
