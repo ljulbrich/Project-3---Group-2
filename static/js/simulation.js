@@ -19,18 +19,6 @@ function submitSearch()
   }
 }
 
-function randNum(min, max) 
-{
-  // Math.random() generates a random number between 0 (inclusive) and 1 (exclusive)
-  const randomDecimal = Math.random();
-
-  // Multiply the random decimal by the range (max minus min) and add the minimum value
-  // This scales the random decimal to be within the desired range
-  const randomNumber = Math.floor(randomDecimal * (max - min + 1)) + min;
-
-  return randomNumber;
-}
-
 function lineChart(name, x, y)
 {
     var trace1 = {
@@ -49,9 +37,4 @@ function lineChart(name, x, y)
     };
 
     Plotly.newPlot('line-chart', data, layout);
-}
-
-function initialChart(x,y)
-{
-  
 }
