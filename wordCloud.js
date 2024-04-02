@@ -1,34 +1,42 @@
 anychart.onDocumentReady(function() {
-    let data = [
-        {"x":'not been profitable', "value":0.9997759461402893, 'catagory':'NEGATIVE'},
-        {"x":"We Wouldn't Be Too Quick", "value":0.9955692887306213, 'catagory':'NEGATIVE'},
-        {"x":"potential dividends", "value":0.8955692887306213, 'catagory':'POSITIVE'},
-        {"x":"Bad eggs, good profits", "value":0.999992887306229, 'catagory':'POSITIVE'}
-        ];
-    let chart = anychart.tagCloud(data);
+    let dataList = [];
+    fetch('./Resources/newsArticles.json')
+        .then((response) => response.json())
+        .then(data => {
+            for (var article of Object.values(data)) {
+                dataList.push({
+                    x:`${article.title}`,
+                    value:article.score,
+                    category:`${article.label}`,
+                    custom_field: `${article.link}`
+                });
+            }
+            console.table(dataList);
 
-    // set a chart title
-    chart.title('Sentiment analysis of summarised news articles')
-    // set an array of angles at which the words will be laid out
-    chart.angles([0, 90])
+            // Create wordCloud
+            let chart = anychart.tagCloud(dataList);
 
-    // enable a color range
-    let colorRange = chart.colorRange(true);
-    colorRange.enabled(true);
+            // set a chart title
+            chart.title('Sentiment analysis of summarised news articles')
+            // set an array of angles at which the words will be laid out
+            chart.angles([0, 45])
 
-    colorRange.palette(['#40cf45', '#d13936']);
+            chart.mode('spiral')
 
-    // set marker type (optional)
-    // let marker = colorRange.marker();
-    // marker.type('diamond');
-
-
-    // format tooltips
-    var formatter = "{%value}{scale:(1)(1000)(1000)(1000)|()( thousand)( million)( billion)}";
-    var tooltip = chart.tooltip();
-    tooltip.format(formatter);
-
-    // display the word cloud chart
-    chart.container("container");
-    chart.draw();
+            chart.listen('pointClick', function(e) {
+                let url = `https://au.yahoo.com${e.point.get('custom_field')}`;
+                console.log(url);
+                window.open(url);
+            })
+        
+            // enable a color range
+            let colorRange = chart.colorRange(true);
+            colorRange.enabled(true);
+        
+            colorRange.palette(['#40cf45', '#d13936']);
+        
+            // display the word cloud chart
+            chart.container("container");
+            chart.draw();
+        })
 });
