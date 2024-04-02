@@ -69,6 +69,3 @@ def webscraper(url_input):
         json.dump(article_dict, outfile)
     
     return article_dict
-
-link = 'iph.ax'
-webscraper(link)

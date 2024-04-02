@@ -36,7 +36,7 @@ anychart.onDocumentReady(function() {
             colorRange.palette(['#40cf45', '#d13936']);
         
             // display the word cloud chart
-            chart.container("container");
+            chart.container("wordCloud");
             chart.draw();
         })
 });
