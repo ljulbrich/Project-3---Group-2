@@ -2,7 +2,7 @@
 from flask import Flask, jsonify, render_template
 
 # Import local dependencies
-from webscraper import webscraper
+from static.webscraper import webscraper
 
 if __name__ == "__main__":
     #################################################

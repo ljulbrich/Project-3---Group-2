@@ -48,6 +48,6 @@ anychart.onDocumentReady(function() {
     else {
         // imageLink = '/images/incorrectLink.jpg'
         // imageLink = "{{url_for('images', filename='incorrectLink.jpg')}}"
-        document.getElementById('container').innerHTML = `<img src='{{url_for('images', filename='incorrectLink.jpg')}}' alt='Incorrect stock ticker'>`
+        document.getElementById('container').innerHTML = `<img src="{{url_for('images', filename='incorrectLink.jpg')}}" alt='Incorrect stock ticker'>`
     }
 });
