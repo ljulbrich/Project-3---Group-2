@@ -41,4 +41,21 @@ def rand_com_data():
     #randomly choose a list and access to that list's index and collect it and round it
     for i in range (len(date_series)):
         data.append(round(all_data[rand_idx][i],2))
-    return date_series, data
+    return rand_com, date_series, data
+
+def save_data(db_name, collection_name, com_name, data):
+    mongo = MongoClient(port=27017)
+    # Get the database object (creates it if it doesn't exist)
+    db = mongo[db_name]
+    #same as above
+    collection = db[collection_name]
+
+    collection.insert_one(
+    {
+        'stock': com_name,
+        'full_name': data['name'],
+        'bid_price': data['bid'],
+        'bid_amount': data['amount'],
+        'email': data['email'],
+        'mobile': data['mobile']
+    })

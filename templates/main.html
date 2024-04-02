@@ -18,7 +18,7 @@
       <div class="col-md-3" style="margin-left:100px;margin-top:10px">
       <div class="card card-primary">
         <div class="card-header">
-          <h4 class="card-title"> {{ c_name }}</h4>
+          <h4 class="card-title"> {{ com_name }}</h4>
         </div>
         <div id="company" class="card-body"></div>
       </div>
@@ -46,10 +46,10 @@
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
   <script>
-    const company_data = {{ c_data|tojson }};
+    const companyData = {{ company_data|tojson }};
     const company_news = {{ news|tojson }};
     
-    createTable(company_data);
+    createTable(companyData);
     newsPage(company_news);
   </script>
 </body>

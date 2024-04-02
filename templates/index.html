@@ -7,16 +7,12 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex; /* Use flexbox for centering */
-            min-height: 100vh; /* Set minimum viewport height */
-            align-items: flex-start; /* Align vertically */
-            justify-content: flex-start; /* Align horizontally */
             background-color: #f5f5f5; /* Light gray background */
         }
 
         .search-box {
-            margin-top: 200px; /* Adjust margin for desired position */
-            margin-left: 500px; /* Adjust margin for desired position */
+            margin-left:500px;
+            margin-top:50px;
             width: 50%; /* Adjust width as needed */
             max-width: 500px; /* Set a maximum width */
             background-color: white;
@@ -32,12 +28,41 @@
             font-size: 16px;
             padding: 5px;
         }
+
+        #title{
+            margin-left:500px;
+            margin-top:150px;
+        }
+
+        .quick-access{
+            margin-left:500px;
+            margin-top:20px;
+        }
+
+        .quick-message{
+            margin-left:500px;
+            margin-top:50px;
+        }
+
     </style>
 </head>
 <body>
-
+    <div id="title">
+    <h4>Project 3 Group 2</h4>
+    <p>Please search your stock below</p>
+    </div>
     <div class="search-box">
         <input type="text" id= "search" placeholder="search stock ticker e.g. msft">
+    </div>
+
+    <div class="quick-message">
+        <h4>Quick Access</h4>
+    </div>
+
+    <div class="quick-access">
+        <button onclick="location.href='/'">Roy's Top 20</button>
+        <button onclick="location.href='/'">Richard's Selection</button>
+        <button onclick="location.href='/simulation'">Broker Simulation</button>
     </div>
 
 <script src="{{ url_for('static', filename='js/logic.js') }}"></script>

@@ -1,7 +1,7 @@
 # Import the dependencies.
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 from xiang import er_plot, company_details, company_name, get_news
-from database import rand_com_data
+from database import rand_com_data, save_data
 import yfinance as yf
 
 #################################################
@@ -18,23 +18,25 @@ def index():
 @app.route("/<ticker>", methods=["GET", "POST"])
 def main(ticker):
     stock = yf.Ticker(ticker)
-
-    #try-catch is for early debugging purpose, not really useful tho. keep it as a future example
-    try:
-        er_image = er_plot(stock)
-        c_data = company_details(stock)
-        c_name = company_name(stock)
-        news = get_news(stock)
-    except Exception as e:
-        error_message = str(e)
-        return render_template("main.html", error_message=error_message)
     
-    return render_template('main.html', er_image = er_image, c_data = c_data, c_name=c_name, news=news)
+    er_image = er_plot(stock)
+    company_data = company_details(stock)
+    com_name = company_name(stock)
+    news = get_news(stock)
 
-@app.route("/simulation")
+    return render_template('main.html', er_image = er_image, company_data = company_data, com_name=com_name, news=news)
+
+@app.route("/simulation", methods=["GET", "POST"])
 def simulation():
-    stock_date, stock_price = rand_com_data()
-    return render_template('simulation.html', stock_date=stock_date, stock_price=stock_price)
+    stock_symbol, stock_date, stock_price = rand_com_data()
+
+    if request.method == 'POST':
+        form_data = request.form
+        save_data('trade','requests', stock_symbol, form_data)
+
+        return render_template('thank.html')
+    
+    return render_template('simulation.html', stock_symbol=stock_symbol, stock_date=stock_date, stock_price=stock_price)
 
 #################################################
 # Run the app
