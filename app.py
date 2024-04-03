@@ -28,7 +28,7 @@ def main(ticker):
 
 @app.route("/simulation", methods=["GET", "POST"])
 def simulation():
-    stock_symbol, stock_date, stock_price = rand_com_data()
+    stock_symbol, stock_date, stock_high, stock_low = rand_com_data()
 
     if request.method == 'POST':
         form_data = request.form
@@ -36,7 +36,7 @@ def simulation():
 
         return render_template('thank.html')
     
-    return render_template('simulation.html', stock_symbol=stock_symbol, stock_date=stock_date, stock_price=stock_price)
+    return render_template('simulation.html', stock_symbol=stock_symbol, stock_date=stock_date, stock_high=stock_high, stock_low=stock_low)
 
 #################################################
 # Run the app

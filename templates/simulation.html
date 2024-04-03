@@ -73,10 +73,11 @@
 
   <script>
     const stockX = {{ stock_date|tojson }};
-    const stockY = {{ stock_price|tojson }};
+    const stockHigh = {{ stock_high|tojson }};
+    const stockLow = {{ stock_low|tojson }};
     const stockSymbol = {{ stock_symbol|tojson }};
     
-    lineChart(stockSymbol, stockX, stockY);
+    lineChart(stockSymbol, stockX, stockHigh, stockLow);
   </script>
 
 </body>
