@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Top 20 ASX Stocks</title>
+<style>
+  .container-roy {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    height: 100vh; /* 100vh for full viewport height */
+    overflow-y: scroll; /* Enable vertical scrolling */
+  }
+  .data-frame-table {
+    width: 100%; /* Image takes full width */
+  }
+  .images {
+    display: flex;
+    flex-wrap: wrap; /* Wrap images if necessary */
+    justify-content: space-between; /* Distribute evenly */
+    margin: 10px;
+  }
+  .image {
+    width: 30%; /* Adjust width as needed */
+    margin: 5px;
+  }
+
+  .navbar {
+        margin-top: 3rem;
+        background-color: #720e9e; /* Yahoo Finance blue */
+        color: #fff; /* White text */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        }
+
+    .container {
+        display: flex;
+        align-items: center;
+        }
+
+    .nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        }
+
+    .nav-list li {
+        margin-right: 1.5rem;
+        }
+
+    .nav-list a {
+        color: inherit; /* Inherit color from navbar */
+        text-decoration: none;
+        font-weight: 500;
+        }
+
+    .nav-list a:hover {
+        color: #e0e0e0; /* Light gray hover effect */
+        }
+</style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <ul class="nav-list">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/roytop20">Roy's Top 20</a></li>
+        <li><a href="/">Richard's Selection</a></li>
+        <li><a href="/simulation">Trading Simulator</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-roy">
+    <img class="data-frame-table" src="{{ url_for('static', filename='images/Data Frame Table.png')}}" alt="Data Frame Table">
+    <div class="images">
+      <img class="image" src="{{ url_for('static', filename='images/Percentage of Each Sector in Top 20 ASX Stocks.png') }}" alt="Percentage of Each Sector in Top 20 ASX Stocks">
+      <img class="image" src="{{ url_for('static', filename='images/Market Cap of Top 20 ASX Stocks.png') }}" alt="Market Cap of Top 20 ASX Stocks">
+      <img class="image" src="{{ url_for('static', filename='images/Total Revenue of Top 20 ASX Stocks.png')}}" alt="Total Revenue of Top 20 ASX Stocks">
+      <img class="image" src="{{ url_for('static', filename='images/Earning Per Share of Top 20 ASX Stocks.png') }}" alt="Earning Per Share of Top 20 ASX Stocks">
+      <img class="image" src="{{ url_for('static', filename='images/PE Ratio Comparison of Top 20 ASX Stocks.png') }}" alt="PE Ratio Comparison of Top 20 ASX Stocks">
+      <img class="image" src="{{ url_for('static', filename='images/Return on Equity of Top 20 ASX Stocks.png') }}" alt="Return on Equity of Top 20 ASX Stocks">
+    </div>
+  </div>
+</body>
+</html>

@@ -48,6 +48,11 @@ def long_term_price(ticker):
     # Pass JSON data to template
     return render_template('long-term-price.html', scraped_data=scraped_data, live_data=live_data)
 
+@app.route("/roytop20")
+def roy():
+    return render_template('Top_20_ASX_Stocks.html')
+
+
 #################################################
 # Run the app
 #################################################
