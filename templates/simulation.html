@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stock Trading Simulation</title>                                                                                
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<style>
+  input {
+    width: 20%; 
+    margin-top:5px;
+    }
+</style>
+
+</head>
+
+<body>
+  {% include 'nav.html' %}
+
+    <div class="row">
+      <div class="col-md-12 p-5 text-center bg-light">
+        <h1>Broker Trading Simulation</h1>
+        <p>This stock is randomly selected from companies in Nasdaq that have an IPO year earlier than 2022 </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="line-chart"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="form-div" class="'mb-6" style="margin-top:40px;margin-left:600px;">
+      
+        <h4>Trading Request</h4>
+    
+        <form id="myForm" method="POST">
+          <div class="'mb-6">
+            <label for="name">Your Full Name:</label><br>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="'mb-6">
+            <label for="bid">Your Bidding Price:</label><br>
+            <input inputmode="numeric" id="bid" name="bid" required>
+          </div>
+
+          <div class="'mb-6">
+            <label for="amount">The amount of shares (at least 100):</label><br>
+            <input inputmode="numeric" id="amount" name="amount" required>
+          </div>
+
+          <div class="'mb-6">
+            <label for="email">Your Email:</label><br>
+            <input type="text" id="email" name="email" required>
+          </div>
+
+          <div class="'mb-6">
+            <label for="mobile">Your Mobile:</label><br>
+            <input inputmode="numeric" id="mobile" name="mobile">
+          </div>
+          <button type="submit" style="margin-top:10px;">Submit</button>
+        </form>
+      </div>
+    </div>
+
+  <script src="{{ url_for('static', filename='js/simulation.js') }}"></script>
+
+  <script>
+    const stockX = {{ stock_date|tojson }};
+    const stockHigh = {{ stock_high|tojson }};
+    const stockLow = {{ stock_low|tojson }};
+    const stockSymbol = {{ stock_symbol|tojson }};
+    
+    lineChart(stockSymbol, stockX, stockHigh, stockLow);
+  </script>
+
+</body>
+
+</html>
