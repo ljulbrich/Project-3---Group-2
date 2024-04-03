@@ -38,6 +38,10 @@ def simulation():
     
     return render_template('simulation.html', stock_symbol=stock_symbol, stock_date=stock_date, stock_high=stock_high, stock_low=stock_low)
 
+@app.route("/roytop20")
+def roy():
+    return render_template('Top_20_ASX_Stocks.html')
+
 #################################################
 # Run the app
 #################################################
