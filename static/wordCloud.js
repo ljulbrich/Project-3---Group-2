@@ -1,31 +1,53 @@
 anychart.onDocumentReady(function() {
-    let data = fetch('./Resources/newsArticles.json').then(response => response.json());
-    let chart = anychart.tagCloud(data);
+    let dataList = [];
+    let text = '';
+    document.getElementById('news').innerHTML = JSON.stringify(scrapedData);
+    if (Object.keys(scrapedData).length > 0) {
+        for (var article of Object.values(scrapedData)) {
+            let title = article.title;
+            let score = article.score;
+            let label = article.label;
+            let link = article.link;
 
-    // set a chart title
-    chart.title('Sentiment analysis of summarised news articles');
-    // set an array of angles at which the words will be laid out
-    chart.angles([0, 90]);
-    // setting scale to logarithmic (comment if not needed)
-    // chart.scale(anychart.scales.log());
+            dataList.push({
+                x:`${title}`,
+                value:score,
+                category:`${label}`,
+                custom_field: `${link}`
+            });
+        };
+            
+        console.table(dataList);
 
-    // Setting url
-    chart.listen("pointClick", function(e){
-        var url = "//en.wiktionary.org/wiki/" + e.point.get("x");
-        window.open(url, "_blank");
-      });
+        // Create wordCloud
+        let chart = anychart.tagCloud(dataList);
 
-    // enable a color range
-    let colourRange = chart.colorRange(true);
-    colourRange.enabled(true);
+        // set a chart title
+        chart.title('Sentiment analysis of summarised news articles')
+        // set an array of angles at which the words will be laid out
+        chart.angles([0, 45])
 
-    colourRange.palette(['#40cf45', '#d13936']);
+        chart.mode('spiral')
 
-    // set marker type (optional)
-    let marker = colorRange.marker();
-    marker.type('diamond');
+        chart.listen('pointClick', function(e) {
+            let url = `https://au.yahoo.com${e.point.get('custom_field')}`;
+            console.log(url);
+            window.open(url);
+        });
 
-    // display the word cloud chart
-    chart.container("container");
-    chart.draw();
+        // enable a color range
+        let colorRange = chart.colorRange(true);
+        colorRange.enabled(true);
+
+        colorRange.palette(['#40cf45', '#d13936']);
+
+        // display the word cloud chart
+        chart.container("container");
+        chart.draw();
+    }
+    else {
+        // imageLink = '/images/incorrectLink.jpg'
+        // imageLink = "{{url_for('images', filename='incorrectLink.jpg')}}"
+        document.getElementById('container').innerHTML = `<img src="{{url_for('images', filename='incorrectLink.jpg')}}" alt='Incorrect stock ticker'>`
+    }
 });

@@ -1,0 +1,50 @@
+<style>
+    .navbar {
+        margin-top: 3rem;
+        background-color: #720e9e; /* Yahoo Finance blue */
+        color: #fff; /* White text */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        }
+
+    .container {
+        display: flex;
+        align-items: center;
+        }
+
+    .nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        }
+
+    .nav-list li {
+        margin-right: 1.5rem;
+        }
+
+    .nav-list a {
+        color: inherit; /* Inherit color from navbar */
+        text-decoration: none;
+        font-weight: 500;
+        }
+
+    .nav-list a:hover {
+        color: #e0e0e0; /* Light gray hover effect */
+        }
+    </style>
+
+    <nav class="navbar">
+      <div class="container">
+        <ul class="nav-list">
+          <li><a href="/">HOME</a></li>
+          <li><a href="/">Roy's Top 20</a></li>
+          <li><a href="/">Richard's Selection</a></li>
+          <li><a href="/simulation">Trading Simulator</a></li>
+          <li><a href="/long-term-price">Long term live view</a></li>
+        </ul>
+        <input type="text" id= "search-main" placeholder="e.g. msft" class="float: right">
+      </div>
+    </nav>
