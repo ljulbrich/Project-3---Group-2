@@ -2,8 +2,10 @@
 <html>
  <head>
   <title>Live view and sentiment analysis</title>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
   <style>
-    html, body, #wordCloud {
+    html, body, #container {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -12,7 +14,38 @@
   </style> 
  </head>
   <body>
-    <div id="wordCloud"></div>
-    <script src="index.py"></script>
+   <div id="container"></div>
+    <script>
+        anychart.onDocumentReady(function() {
+            let data = [
+                {"x":'not been profitable', "value":0.9997759461402893, 'catagory':'NEGATIVE'},
+                {"x":"We Wouldn't Be Too Quick", "value":0.9955692887306213, 'catagory':'NEGATIVE'},
+                {"x":"potential dividends", "value":0.8955692887306213, 'catagory':'POSITIVE'},
+                {"x":"Bad eggs, good profits", "value":0.999992887306229, 'catagory':'POSITIVE'}
+                ];
+            let chart = anychart.tagCloud(data);
+
+            // set a chart title
+            chart.title('Sentiment analysis of summarised news articles')
+            // set an array of angles at which the words will be laid out
+            chart.angles([0, 90])
+            // DON'T set scale to logarithmic!
+
+            // enable a color range
+            let colourRange = chart.colorRange(true);
+            colourRange.enabled(true);
+
+            // set the color range
+            colourRange.palette(['#40cf45', '#d13936']);
+
+            // set marker type (optional)
+            // let marker = colourRange.marker();
+            // marker.type('diamond');
+
+            // display the word cloud chart
+            chart.container("container");
+            chart.draw();
+        });
+    </script>
   </body>
 </html>

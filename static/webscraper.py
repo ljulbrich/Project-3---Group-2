@@ -65,7 +65,7 @@ def webscraper(url_input):
         article_dict[article]['score'] = result[0]['score']
 
     # implement code to export into mongoDB
-    with open('Resources/newsArticles.json', 'w') as outfile:
+    with open('resources/newsArticles.json', 'w') as outfile:
         json.dump(article_dict, outfile)
     
     return article_dict

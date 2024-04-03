@@ -3,6 +3,7 @@ from flask import Flask, jsonify, render_template
 
 # Import local dependencies
 from static.webscraper import webscraper
+from static.live_view import live_view
 
 if __name__ == "__main__":
     #################################################
@@ -27,12 +28,10 @@ if __name__ == "__main__":
 
     @app.route('/long-term-price/<ticker>')
     def long_term_price(ticker):
-
-        # Add ticker list to MongoDB
-        # call webscraper
         scraped_data = webscraper(ticker)
+        live_data = live_view(ticker)
 
         # Pass JSON data to template
-        return render_template('long-term-price.html', scraped_data=scraped_data)
+        return render_template('long-term-price.html', scraped_data=scraped_data, live_data=live_data)
         
     app.run(debug=True)
