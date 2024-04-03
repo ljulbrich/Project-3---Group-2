@@ -2,6 +2,8 @@
 from flask import Flask, render_template, request, jsonify
 from xiang import er_plot, company_details, company_name, get_news
 from database import rand_com_data, save_data
+from static.py.live_view import live_view
+from static.py.webscraper import webscraper
 import yfinance as yf
 
 #################################################
@@ -37,6 +39,14 @@ def simulation():
         return render_template('thank.html')
     
     return render_template('simulation.html', stock_symbol=stock_symbol, stock_date=stock_date, stock_high=stock_high, stock_low=stock_low)
+
+@app.route('/long-term-price/<ticker>')
+def long_term_price(ticker):
+    scraped_data = webscraper(ticker)
+    live_data = live_view(ticker)
+
+    # Pass JSON data to template
+    return render_template('long-term-price.html', scraped_data=scraped_data, live_data=live_data)
 
 #################################################
 # Run the app
