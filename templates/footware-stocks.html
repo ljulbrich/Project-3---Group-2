@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footware stock analysis</title>
+</head>
+<body>
+    {% include 'nav.html' %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/eventListener.js') }}"></script>
+    <div id="52WeekChange">
+        <h1>52WeekChange 1 Bar Plot</h1>
+        <p>Below is the bar plot of stock data:</p>
+        <img src="{{ url_for('static', filename='images/52WeekChange_bar_plot.png') }}" alt="52WeekChange Bar Plot">
+    </div>
+
+    <div id="barPlot">
+        <h1>Stock Data 1 Bar Plot</h1>
+        <p>Below is the bar plot of stock data:</p>
+        <img src="{{ url_for('static', filename='images/stock_data_1_bar_plot.png') }}" alt="Stock Data 1 Bar Plot">
+    </div>
+
+    <div id="pricesBar">
+        <h1>Stock Prices Bar Plot</h1>
+        <p>Below is the bar plot of stock prices:</p>
+        <img src="{{ url_for('static', filename='images/stock_prices_bar_plot.png') }}" alt="Stock Prices Bar Plot">
+    </div>
+</body>
+</html>

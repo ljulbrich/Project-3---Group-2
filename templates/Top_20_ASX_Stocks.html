@@ -61,13 +61,15 @@
 </style>
 </head>
 <body>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/eventListener.js') }}"></script>
 
   <nav class="navbar">
     <div class="container">
       <ul class="nav-list">
         <li><a href="/">HOME</a></li>
         <li><a href="/roytop20">ASX Top 20 Stocks</a></li>
-        <li><a href="/">Richard's Selection</a></li>
+        <li><a href="/footware-stocks">US footware stocks</a></li>
         <li><a href="/simulation">Trading Simulator</a></li>
       </ul>
     </div>

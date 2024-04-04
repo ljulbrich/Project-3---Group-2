@@ -54,6 +54,10 @@ def long_term_price(ticker):
 def roy():
     return render_template('Top_20_ASX_Stocks.html')
 
+@app.route("/footware-stocks")
+def richard():
+    return render_template('footware-stocks.html')
+
 
 #################################################
 # Run the app
