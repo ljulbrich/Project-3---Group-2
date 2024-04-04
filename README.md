@@ -3,7 +3,7 @@
 Our proposal is written here:
 https://docs.google.com/document/d/1966Fck0Z57jaAnJw_osNfomzqi6nW-hzQI0lGnqi5c8/edit?usp=sharing
 
-# Xiang's Part
+# Webpage Backend
 
 # 1.The blueprint of the whole project
 
@@ -108,14 +108,8 @@ https://docs.google.com/document/d/1966Fck0Z57jaAnJw_osNfomzqi6nW-hzQI0lGnqi5c8/
 * And a thank you page with a go back will take the user back to the main page
 ![Screenshot of webpage](screenshots/trade8.png)
 
-# The end
 
-* The project is designed to simulate Yahoo Finance, and the final website is fully functional and provide the same function as Yahoo Finance
-* However, there are some places need to be improved, especially the data validation part.
-
-# Lucas' part
-
-### Long term view and sentiment analysis
+# Long term view and sentiment analysis
 
 The `long-term-price.html` page takes an input in the form of a stock ticker at the end of the URL. This then uses the flask `app.py` to run two python scripts.
 The data from those python scripts are stored in the webpage and then passed to the two javascript files which create the graphs.
@@ -145,17 +139,20 @@ This web app uses publicly available data, however it is limited in scope as mos
 The wordcloud sentiment analysis may not be accurate as the transformer hasn't been tuned to perform sentiment analysis on financial news data.
 This being said, this application is a great resource for those who want to get a good overview of stock data and news.
 
-# Roy's part
-
-### Top 20 ASX Stocks
+# Top 20 ASX Stocks
 
 This page provides an overview of the top 20 ASX stocks with the largest market cap.
 The dataset used to obtain the ASX code of all the listed shares are downloaded from Market Index (https://www.marketindex.com.au/data-downloads).
 To obtain comprehensive information of all the ASX stocks, Yahoo Finance API is used. It provides a lot of information and data. To provide the users a quick and general view of the stock information, the following data/information are obtained from Yahoo Finance API: ASX code, name, industry, sector, market cap, employee count, revenue, price, volume, P/E ratio, earnings per share, and return on equity. A cleaned dataset is created and saved as a csv file for further analysis.
 The csv file of all the ASX stocks is imported into MongoDB for storage. Python is used to retrieve data from MongoDB. All the table and charts are then created by sorting the top 20 largest market cap stocks.
 
-# Richard's part
+# Footware stocks analysis
 
 1. The blue graph shows the current price of footwear stocks in the US stock market. In the case, Deck is really at a high price. The current price helps the investors make decisions.
 2. The PE Ratio is shown in the green graph. In the graph, On holding AG has a high PE ratio but is not overvalued while Weyco group is at a low PE ratio because of the insider's trading. They are different from what we learn in the textbook.
 3. The 52 week change see the stock's long term performance. Deck has a high percentage because of its boosting business while Nike underrated the wholesales business which results in its low 52 week change
+
+# The end
+
+* The project is designed to simulate Yahoo Finance, and the final website is fully functional and provide the same function as Yahoo Finance
+* However, there are some places need to be improved, especially the data validation part.
