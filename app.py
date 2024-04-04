@@ -1,6 +1,6 @@
 # Import the dependencies.
 from flask import Flask, render_template, request, jsonify
-from xiang import er_plot, company_details, company_name, get_news
+from xiang import er_plot, company_details, company_name, get_news, main_plot
 from database import rand_com_data, save_data
 from static.py.live_view import live_view
 from static.py.webscraper import webscraper
@@ -25,8 +25,10 @@ def main(ticker):
     company_data = company_details(stock)
     com_name = company_name(stock)
     news = get_news(stock)
+    ticker_date, ticker_high, ticker_low = main_plot(stock)
 
-    return render_template('main.html', er_image = er_image, company_data = company_data, com_name=com_name, news=news)
+    return render_template('main.html', er_image = er_image, company_data = company_data, com_name=com_name, 
+                           news=news, ticker_date=ticker_date, ticker_high=ticker_high, ticker_low=ticker_low)
 
 @app.route("/simulation", methods=["GET", "POST"])
 def simulation():

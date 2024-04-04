@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import io
 import base64
+import pandas as pd
 
 def er_plot(stock):
     #get the dates which are the columns
@@ -81,5 +82,14 @@ def get_news(stock):
                         {'link': news['link']}
                         ])
     return data
+
+#same function from database.py
+def main_plot(stock):
+    df = stock.history(period="12mo").reset_index()
+    datetime_series = pd.to_datetime(df.Date)
+    date_series = datetime_series.dt.strftime('%Y-%m-%d').to_list()
+    high = df.High.to_list()
+    low = df.Low.to_list()
+    return date_series, high, low
 
     

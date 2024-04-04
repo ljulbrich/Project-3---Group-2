@@ -119,3 +119,59 @@ function createTable(data_list) {
     // Append the table to the container
     demoCard.appendChild(table);
   }
+
+  
+function mainChart(x, high, low, name)
+{
+    var trace1 = {
+    type: "scatter",
+    mode: "lines",
+    name: 'high',
+    x: x,
+    y: high,
+    line: {color: '#17BECF'}
+    }
+
+    var trace2 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'low',
+      x: x,
+      y: low,
+      line: {color: '#AD0B00'}
+    }
+
+    var data = [trace1, trace2];
+
+    var layout = {
+    title: `${name}`,
+    xaxis: {
+      autorange: true,
+      range: [x[0], x[x.length-1]],
+      rangeselector: {buttons: [
+          {
+            count: 1,
+            label: '1m',
+            step: 'month',
+            stepmode: 'backward'
+          },
+          {
+            count: 6,
+            label: '6m',
+            step: 'month',
+            stepmode: 'backward'
+          },
+          {step: 'all'}
+        ]},
+      rangeslider: {range: [x[0], x[x.length-1]]},
+      type: 'date'
+    },
+    yaxis: {
+      autorange: true,
+      range: [Math.min(low), Math.max(high)],
+      type: 'linear'
+    }
+    };
+
+    Plotly.newPlot('main-chart', data, layout);
+}

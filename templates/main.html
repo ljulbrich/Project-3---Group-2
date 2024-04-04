@@ -15,6 +15,12 @@
   <div class="container-fluid">
 
     <div class="row">
+      <div class="col-md-12">
+        <div id="main-chart"></div>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-md-3" style="margin-left:100px;margin-top:10px">
       <div class="card card-primary">
         <div class="card-header">
@@ -49,9 +55,17 @@
   <script>
     const companyData = {{ company_data|tojson }};
     const company_news = {{ news|tojson }};
-    
+
+    const stockDate = {{ ticker_date|tojson }};
+    const stockHigh = {{ ticker_high|tojson }};
+    const stockLow = {{ ticker_low|tojson }};
+
+    const stockName = {{ com_name|tojson }};
+    console.log(stockName);
+
     createTable(companyData);
     newsPage(company_news);
+    mainChart(stockDate, stockHigh, stockLow, stockName);
   </script>
 </body>
 </html>
